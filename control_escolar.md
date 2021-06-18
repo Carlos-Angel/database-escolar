@@ -46,3 +46,32 @@ Esta tabla solo guarda los datos de criterio de termino de un plan educativo, el
 | int(2)      |       numero_periodos       |  No  | Numero de periodos para concluir el plan educativo                                                                                                                              |
 | int(3)      | minimo_creditos_aprobatorio |  No  | numero mínimo de créditos aprobatorios para concluir el plan educativo                                                                                                          |
 | bool        |       version_actual        |  No  | campo que indica que versión esta en uso, solo una versión de cada plan educativo puede esta como (true). En caso de tener mas versiones, estas tendrán este campo como (false) |
+
+### Tabla **tipos_materias**
+
+En esta tabla se definen los diferentes tipos de materias que pueden haber.
+Ejemplo:
+
+- Obligatoria: Materia que es indispensable dentro del plan educativo.
+- Optativa: Materia opcional que no depende del plan educativo.
+- Acreditada: Materia que no cuenta con una calificación minima para ser aprobada.
+
+| tipo        |   atributo   | Nulo | descripción                |
+| :---------- | :----------: | :--: | :------------------------- |
+| int         |      id      |  No  | Clave primaria             |
+| varchar(50) | tipo_materia |  No  | Nombre del tipo de materia |
+
+### Tabla **materias**
+
+En esta tabla se definen las materias que serán impartidas dentro de un plan educativo
+
+| tipo         |            atributo             | Nulo | descripción                                                                |
+| :----------- | :-----------------------------: | :--: | :------------------------------------------------------------------------- |
+| int          |               id                |  No  | Clave primaria                                                             |
+| int          |       materia_anterior_id       |  Si  | Clave foránea que hace referencia a la misma tabla **materias**            |
+| int          |         tipo_materia_id         |  No  | Clave foránea que hace referencia a la tabla **tipos_materias**            |
+| int          |     version_plan_estudio_id     |  No  | Clave foránea que hace referencia a la tabla **versiones_planes_estudios** |
+| char(8)      |              clave              |  No  | Clave que sera impresa en los documentos oficiales.                        |
+| varchar(200) |             materia             |  No  | Nombre de la materia                                                       |
+| int(3)       |            creditos             |  No  | numero de créditos que vale la materia                                     |
+| int(2)       | calificacion_minima_aprobatoria |  No  | Valor mínimo de la calificación para aprobar la materia                    |
