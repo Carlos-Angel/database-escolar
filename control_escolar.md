@@ -75,3 +75,27 @@ En esta tabla se definen las materias que serán impartidas dentro de un plan ed
 | varchar(200) |             materia             |  No  | Nombre de la materia                                                       |
 | int(3)       |            creditos             |  No  | numero de créditos que vale la materia                                     |
 | int(2)       | calificacion_minima_aprobatoria |  No  | Valor mínimo de la calificación para aprobar la materia                    |
+
+### Tabla **escuelas**
+
+En esta tabla se definen los datos de la institución educativa, Se define en caso de que se administre más de una institución.
+
+| tipo         |      atributo       | Nulo | descripción                                                                 |
+| :----------- | :-----------------: | :--: | :-------------------------------------------------------------------------- |
+| int          |         id          |  No  | Clave primaria                                                              |
+| varchar(20)  |        clave        |  No  | Clave que otorga la secretaría de educación a la institución                |
+| varchar(200) |   nombre_oficial    |  No  | Nombre de la institución el cuál saldrá impreso en los documentos oficiales |
+| varchar(10)  |       siglas        |  No  | abreviatura del nombre de la institución                                    |
+| varchar(15)  | telefono_particular |  No  | teléfono oficial de la institución                                          |
+| varchar(255) |      direccion      |  No  | Dirección de la institución                                                 |
+| varchar(100) |        logo         |  No  | ubicación del archivo logo de la institución                                |
+
+### Tabla **ofertas_educativas**
+
+En esta tabla se definen los planes educativos que están impartidos dentro de una institución.
+
+| tipo |     atributo      | Nulo | descripción                                                        |
+| :--- | :---------------: | :--: | :----------------------------------------------------------------- |
+| int  |        id         |  No  | Clave primaria                                                     |
+| int  |    escuela_id     |  No  | Clave foránea que hace referencia a la misma tabla **escuelas**    |
+| int  | plan_educativo_id |  No  | Clave foránea que hace referencia a la tabla **planes_educativos** |
