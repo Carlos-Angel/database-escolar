@@ -99,3 +99,25 @@ En esta tabla se definen los planes educativos que están impartidos dentro de u
 | int  |        id         |  No  | Clave primaria                                                     |
 | int  |    escuela_id     |  No  | Clave foránea que hace referencia a la misma tabla **escuelas**    |
 | int  | plan_educativo_id |  No  | Clave foránea que hace referencia a la tabla **planes_educativos** |
+
+### Tabla **tipos_periodos_escolares**
+
+En esta tabla se definen los tipos de periodos para cursar un plan educativo.
+Ejemplo: periodo semanal, cuatrimestral, semestral, anual, etc.
+
+| tipo        |        atributo        | Nulo | descripción                          |
+| :---------- | :--------------------: | :--: | :----------------------------------- |
+| int         |           id           |  No  | Clave primaria                       |
+| varchar(50) | tipo_periodo_educativo |  No  | Nombre del tipo de periodo educativo |
+
+### Tabla **periodos_escolares**
+
+En esta tabla se definen los datos del periodo escolar que se abre en la escuela cade vez que inicia uno nuevo.
+
+| tipo |        atributo         | Nulo | descripción                                                                     |
+| :--- | :---------------------: | :--: | :------------------------------------------------------------------------------ |
+| int  |           id            |  No  | Clave primaria                                                                  |
+| int  | tipo_periodo_escolar_id |  No  | Clave foránea que hace referencia a la misma tabla **tipos_periodos_escolares** |
+| int  |       escuela_id        |  No  | Clave foránea que hace referencia a la misma tabla **escuelas**                 |
+| date |      fecha_inicio       |  No  | Fecha de inicio del periodo escolar                                             |
+| date |      fecha_termino      |  No  | Fecha de termino del periodo escolar                                            |
