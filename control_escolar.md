@@ -1,8 +1,23 @@
-# Documentación del esquema: control escolar
+# Esquema: control escolar
 
 En este archivo se describen las tablas y sus átributos definidos en el esquema de control escolar.
 
-### **Atributos obligatorios**
+- [Esquema: control escolar](#esquema-control-escolar)
+  - [Atributos obligatorios](#atributos-obligatorios)
+- [Tablas](#tablas)
+  - [niveles_educativos](#niveles_educativos)
+  - [planes_educativos](#planes_educativos)
+  - [versiones_planes_educativos](#versiones_planes_educativos)
+  - [tipos_materias](#tipos_materias)
+  - [materias](#materias)
+  - [escuelas](#escuelas)
+  - [ofertas_educativas](#ofertas_educativas)
+  - [tipos_periodos_escolares](#tipos_periodos_escolares)
+  - [periodos_escolares](#periodos_escolares)
+  - [alumnos](#alumnos)
+  - [tutores](#tutores)
+
+## Atributos obligatorios
 
 Nota: Todas las tablas de este esquema deben contar con los siguientes 3 atributos.
 
@@ -12,7 +27,9 @@ Nota: Todas las tablas de este esquema deben contar con los siguientes 3 atribut
 | timestamp | created_att |  No  | campo que indica cuando fue creada la fila                                               |
 | timestamp | updated_att |  No  | campo que indica cuando fue la ultima actualización de algún atributo de la tabla        |
 
-### Tabla **niveles_educativos**
+# Tablas
+
+### niveles_educativos
 
 En esta tabla se definen los niveles de estudio de los programas. Ejemplo: Primaria, Secundaria, Preparatoria, Licenciatura, etc.
 
@@ -21,7 +38,7 @@ En esta tabla se definen los niveles de estudio de los programas. Ejemplo: Prima
 | int         |       id        |  No  | Clave primaria             |
 | varchar(50) | nivel_educativo |  No  | Nombre del nivel educativo |
 
-### Tabla **planes_educativos**
+### planes_educativos
 
 En esta tabla se definen los planes de educación, un ejemplo de ellos son: Licenciatura en Ingeniería, Licenciatura en Médicina, Bachillerato Técnico en enfermería, etc. (En el caso de los niveles educativos inferiores o igual al nivel de secundaria, estos definen el nombre del plan educativo con el mismo nombre del nivel educativo).
 
@@ -32,7 +49,7 @@ En esta tabla se definen los planes de educación, un ejemplo de ellos son: Lice
 | varchar(200) |   nombre_oficial   |  No  | Nombre que se imprimirá en documentos oficiales                                         |
 | varchar(50)  |    abreviatura     |  No  | Campo que se visualizara en sistema. Evitando los nombres oficiales que son mas largos. |
 
-### Tabla **versiones_planes_educativos**
+### versiones_planes_educativos
 
 En esta tabla se definen las diferentes versiones de un plan de estudio. La versión define los criterios para terminar un plan educativo, así como el orden de materias que se imparten. ya que este suele ser actualizado. Evitando crear un nuevo plan educativo cada que los criterios o el orden de materias se actualice.
 Esta tabla solo guarda los datos de criterio de termino de un plan educativo, el orden de las materias se define en la tabla Materias (se vera mas adelante).
@@ -47,7 +64,7 @@ Esta tabla solo guarda los datos de criterio de termino de un plan educativo, el
 | int(3)      | minimo_creditos_aprobatorio |  No  | numero mínimo de créditos aprobatorios para concluir el plan educativo                                                                                                          |
 | bool        |       version_actual        |  No  | campo que indica que versión esta en uso, solo una versión de cada plan educativo puede esta como (true). En caso de tener mas versiones, estas tendrán este campo como (false) |
 
-### Tabla **tipos_materias**
+### tipos_materias
 
 En esta tabla se definen los diferentes tipos de materias que pueden haber.
 Ejemplo:
@@ -61,7 +78,7 @@ Ejemplo:
 | int         |      id      |  No  | Clave primaria             |
 | varchar(50) | tipo_materia |  No  | Nombre del tipo de materia |
 
-### Tabla **materias**
+### materias
 
 En esta tabla se definen las materias que serán impartidas dentro de un plan educativo
 
@@ -76,7 +93,7 @@ En esta tabla se definen las materias que serán impartidas dentro de un plan ed
 | int(3)       |            creditos             |  No  | numero de créditos que vale la materia                                     |
 | int(2)       | calificacion_minima_aprobatoria |  No  | Valor mínimo de la calificación para aprobar la materia                    |
 
-### Tabla **escuelas**
+### escuelas
 
 En esta tabla se definen los datos de la institución educativa, Se define en caso de que se administre más de una institución.
 
@@ -90,7 +107,7 @@ En esta tabla se definen los datos de la institución educativa, Se define en ca
 | varchar(255) |      direccion      |  No  | Dirección de la institución                                                 |
 | varchar(100) |        logo         |  No  | ubicación del archivo logo de la institución                                |
 
-### Tabla **ofertas_educativas**
+### ofertas_educativas
 
 En esta tabla se definen los planes educativos que están impartidos dentro de una institución.
 
@@ -100,7 +117,7 @@ En esta tabla se definen los planes educativos que están impartidos dentro de u
 | int  |    escuela_id     |  No  | Clave foránea que hace referencia a la misma tabla **escuelas**    |
 | int  | plan_educativo_id |  No  | Clave foránea que hace referencia a la tabla **planes_educativos** |
 
-### Tabla **tipos_periodos_escolares**
+### tipos_periodos_escolares
 
 En esta tabla se definen los tipos de periodos para cursar un plan educativo.
 Ejemplo: periodo semanal, cuatrimestral, semestral, anual, etc.
@@ -110,7 +127,7 @@ Ejemplo: periodo semanal, cuatrimestral, semestral, anual, etc.
 | int         |           id           |  No  | Clave primaria                       |
 | varchar(50) | tipo_periodo_educativo |  No  | Nombre del tipo de periodo educativo |
 
-### Tabla **periodos_escolares**
+### periodos_escolares
 
 En esta tabla se definen los datos del periodo escolar que se abre en la escuela cade vez que inicia uno nuevo.
 
