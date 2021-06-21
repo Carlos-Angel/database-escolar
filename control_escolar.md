@@ -121,3 +121,35 @@ En esta tabla se definen los datos del periodo escolar que se abre en la escuela
 | int  |       escuela_id        |  No  | Clave foránea que hace referencia a la misma tabla **escuelas**                 |
 | date |      fecha_inicio       |  No  | Fecha de inicio del periodo escolar                                             |
 | date |      fecha_termino      |  No  | Fecha de termino del periodo escolar                                            |
+
+### alumnos
+
+En esta tabla se definen los datos del alumno que se registra en un plan educativo que este en oferta por parte de la escuela.
+
+| tipo                         |         atributo          | Nulo | descripción                                                                        |
+| :--------------------------- | :-----------------------: | :--: | :--------------------------------------------------------------------------------- |
+| int                          |            id             |  No  | Clave primaria                                                                     |
+| int                          |        escuela_id         |  No  | Clave foránea que hace referencia a la misma tabla **escuelas**                    |
+| int                          | version_plan_educativo_id |  No  | Clave foránea que hace referencia a la misma tabla **versiones_planes_educativos** |
+| varchar(20)                  |         matricula         |  No  | matricula escolar proporcionada por la institución                                 |
+| varchar(200)                 |          nombre           |  No  | nombre(s) del alumno                                                               |
+| varchar(200)                 |         apellidos         |  No  | apellidos paterno y materno                                                        |
+| varchar(100)                 |        fotografia         |  No  | nombre del archivo de la fotografía, solo extension (jpg, png)                     |
+| date                         |     fecha_nacimiento      |  No  | fecha de nacimiento                                                                |
+| enum('Masculino','Femenino') |           sexo            |  No  | sexo del alumno                                                                    |
+| varchar(255)                 |         direccion         |  No  | dirección de contacto                                                              |
+| varchar(15)                  |    telefono_particular    |  No  | numero telefónico de contacto                                                      |
+| varchar(200)                 |    correo_electronico     |  No  | Fecha de termino del periodo escolar                                               |
+
+### tutores
+
+En esta tabla se definen los datos del tutor o responsable del alumno si este es menor de edad.
+
+| tipo         |      atributo       | Nulo | descripción                                            |
+| :----------- | :-----------------: | :--: | :----------------------------------------------------- |
+| int          |         id          |  No  | Clave primaria                                         |
+| int          |      alumno_id      |  No  | Clave foránea que hace referencia la tabla **alumnos** |
+| varchar(200) |       nombre        |  No  | nombre del tutor o responsable                         |
+| varchar(200) |      apellidos      |  No  | apellidos del tutor o responsable                      |
+| varchar(15)  | telefono_particular |  No  | teléfono de contacto                                   |
+| varchar(200) | correo_electronico  |  Si  | correo electrónico                                     |
