@@ -5,17 +5,19 @@ En este archivo se describen las tablas y sus átributos definidos en el esquema
 - [Esquema: control escolar](#esquema-control-escolar)
   - [Atributos obligatorios](#atributos-obligatorios)
 - [Tablas](#tablas)
-  - [niveles_educativos](#niveles_educativos)
-  - [planes_educativos](#planes_educativos)
-  - [versiones_planes_educativos](#versiones_planes_educativos)
-  - [tipos_materias](#tipos_materias)
-  - [materias](#materias)
-  - [escuelas](#escuelas)
-  - [ofertas_educativas](#ofertas_educativas)
-  - [tipos_periodos_escolares](#tipos_periodos_escolares)
-  - [periodos_escolares](#periodos_escolares)
-  - [alumnos](#alumnos)
-  - [tutores](#tutores)
+    - [niveles_educativos](#niveles_educativos)
+    - [planes_educativos](#planes_educativos)
+    - [versiones_planes_educativos](#versiones_planes_educativos)
+    - [tipos_materias](#tipos_materias)
+    - [materias](#materias)
+    - [escuelas](#escuelas)
+    - [ofertas_educativas](#ofertas_educativas)
+    - [tipos_periodos_escolares](#tipos_periodos_escolares)
+    - [periodos_escolares](#periodos_escolares)
+    - [alumnos](#alumnos)
+    - [tutores](#tutores)
+    - [documentos](#documentos)
+    - [documentos_alumnos](#documentos_alumnos)
 
 ## Atributos obligatorios
 
@@ -170,3 +172,29 @@ En esta tabla se definen los datos del tutor o responsable del alumno si este es
 | varchar(200) |      apellidos      |  No  | apellidos del tutor o responsable                      |
 | varchar(15)  | telefono_particular |  No  | teléfono de contacto                                   |
 | varchar(200) | correo_electronico  |  Si  | correo electrónico                                     |
+
+### documentos
+
+En esta tabla se definen los tipos de documentos que el alumno debe entregar durante el proceso de de inscripción.
+Ejemplo: acta de nacimiento, curp, comprobante de domicilio, etc.
+
+| tipo         | atributo | Nulo | descripción          |
+| :----------- | :------: | :--: | :------------------- |
+| int          |    id    |  No  | Clave primaria       |
+| varchar(100) |  nombre  |  No  | nombre del documento |
+
+### documentos_alumnos
+
+En esta tabla se definen los documentos que el alumno ha entregado durante el proceso de inscripción.
+
+| tipo             |     atributo      | Nulo | descripción                                                   |
+| :--------------- | :---------------: | :--: | :------------------------------------------------------------ |
+| int              |        id         |  No  | Clave primaria                                                |
+| int              |   documento_id    |  No  | Clave foránea que hace referencia la tabla **documentos**     |
+| bool             |     original      |  No  | indica si el alumno entrego el documento original o una copia |
+| date             |   fecha_entrega   |  Si  | fecha que indica cuando se regreso el documento original      |
+| varchar(50)      | documento_digital |  Si  | nombre del documento digital (pdf)                            |
+| enum(malo,bueno) | estado_documento  |  No  | indica el estado físico del documento entregado               |
+| bool             |     prestamo      |  Si  | indica si el alumno solicito un préstamo de su documento      |
+| date             |  fecha_prestamo   |  Si  | fecha en que se entrego el documento.                         |
+| date             |  fecha_devuelto   |  Si  | fecha en que se devolvió el documento.                        |
