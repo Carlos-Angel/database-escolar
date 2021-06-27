@@ -5,19 +5,21 @@ En este archivo se describen las tablas y sus átributos definidos en el esquema
 - [Esquema: control escolar](#esquema-control-escolar)
   - [Atributos obligatorios](#atributos-obligatorios)
 - [Tablas](#tablas)
-    - [niveles_educativos](#niveles_educativos)
-    - [planes_educativos](#planes_educativos)
-    - [versiones_planes_educativos](#versiones_planes_educativos)
-    - [tipos_materias](#tipos_materias)
-    - [materias](#materias)
-    - [escuelas](#escuelas)
-    - [ofertas_educativas](#ofertas_educativas)
-    - [tipos_periodos_escolares](#tipos_periodos_escolares)
-    - [periodos_escolares](#periodos_escolares)
-    - [alumnos](#alumnos)
-    - [tutores](#tutores)
-    - [documentos](#documentos)
-    - [documentos_alumnos](#documentos_alumnos)
+  - [niveles_educativos](#niveles_educativos)
+  - [planes_educativos](#planes_educativos)
+  - [versiones_planes_educativos](#versiones_planes_educativos)
+  - [tipos_materias](#tipos_materias)
+  - [materias](#materias)
+  - [escuelas](#escuelas)
+  - [ofertas_educativas](#ofertas_educativas)
+  - [tipos_periodos_escolares](#tipos_periodos_escolares)
+  - [periodos_escolares](#periodos_escolares)
+  - [alumnos](#alumnos)
+  - [tutores](#tutores)
+  - [documentos](#documentos)
+  - [documentos_alumnos](#documentos_alumnos)
+  - [grupos_escolares](#grupos_escolares)
+  - [grupos_escolares_materias](#grupos_escolares_materias)
 
 ## Atributos obligatorios
 
@@ -198,3 +200,26 @@ En esta tabla se definen los documentos que el alumno ha entregado durante el pr
 | bool             |     prestamo      |  Si  | indica si el alumno solicito un préstamo de su documento      |
 | date             |  fecha_prestamo   |  Si  | fecha en que se entrego el documento.                         |
 | date             |  fecha_devuelto   |  Si  | fecha en que se devolvió el documento.                        |
+
+### grupos_escolares
+
+En esta tabla se definen los grupos que se abren en un nuevo periodo escolar.
+
+| tipo                       |         atributo          | Nulo | descripción                                                                |
+| :------------------------- | :-----------------------: | :--: | :------------------------------------------------------------------------- |
+| int                        |            id             |  No  | Clave primaria                                                             |
+| int                        |    periodo_escolar_id     |  No  | Clave foránea que hace referencia la tabla **periodos_escolares**          |
+| int                        | version_plan_educativo_id |  No  | Clave foránea que hace referencia la tabla **versiones_planes_educativos** |
+| enum(matutino, vespertino) |           turno           |  No  | turno de horario del grupo                                                 |
+| varchar(10)                |          nombre           |  Si  | nombre del grupo oficial                                                   |
+| int                        |           nivel           |  Si  | nivel del periodo escolar del grupo(Ejemplo, 1 semestre, 2 semestre, etc.) |
+
+### grupos_escolares_materias
+
+En esta tabla se definen los grupos que se abren en un nuevo periodo escolar.
+
+| tipo |     atributo     | Nulo | descripción                                                     |
+| :--- | :--------------: | :--: | :-------------------------------------------------------------- |
+| int  |        id        |  No  | Clave primaria                                                  |
+| int  | grupo_escolar_id |  No  | Clave foránea que hace referencia la tabla **grupos_escolares** |
+| int  |    materia_id    |  No  | Clave foránea que hace referencia la tabla **materias**         |
