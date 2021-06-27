@@ -20,6 +20,7 @@ En este archivo se describen las tablas y sus átributos definidos en el esquema
   - [documentos_alumnos](#documentos_alumnos)
   - [grupos_escolares](#grupos_escolares)
   - [grupos_escolares_materias](#grupos_escolares_materias)
+  - [alumnos_inscritos](#alumnos_inscritos)
 
 ## Atributos obligatorios
 
@@ -223,3 +224,13 @@ En esta tabla se definen los grupos que se abren en un nuevo periodo escolar.
 | int  |        id        |  No  | Clave primaria                                                  |
 | int  | grupo_escolar_id |  No  | Clave foránea que hace referencia la tabla **grupos_escolares** |
 | int  |    materia_id    |  No  | Clave foránea que hace referencia la tabla **materias**         |
+
+### alumnos_inscritos
+
+En esta tabla se definen los alumnos que se inscriben a un nuevo periodo escolar.
+
+| tipo |     atributo     | Nulo | descripción                                                     |
+| :--- | :--------------: | :--: | :-------------------------------------------------------------- |
+| int  |        id        |  No  | Clave primaria                                                  |
+| int  |    alumno_id     |  No  | Clave foránea que hace referencia la tabla **alumnos**          |
+| int  | grupo_escolar_id |  No  | Clave foránea que hace referencia la tabla **grupo_escolar_id** |
