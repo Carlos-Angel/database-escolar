@@ -21,6 +21,9 @@ En este archivo se describen las tablas y sus átributos definidos en el esquema
   - [grupos_escolares](#grupos_escolares)
   - [grupos_escolares_materias](#grupos_escolares_materias)
   - [alumnos_inscritos](#alumnos_inscritos)
+  - [tipos_actas_calificaciones](#tipos_actas_calificaciones)
+  - [actas_calificaciones](#actas_calificaciones)
+  - [alumnos_calificaciones](#alumnos_calificaciones)
 
 ## Atributos obligatorios
 
@@ -234,3 +237,54 @@ En esta tabla se definen los alumnos que se inscriben a un nuevo periodo escolar
 | int  |        id        |  No  | Clave primaria                                                  |
 | int  |    alumno_id     |  No  | Clave foránea que hace referencia la tabla **alumnos**          |
 | int  | grupo_escolar_id |  No  | Clave foránea que hace referencia la tabla **grupo_escolar_id** |
+
+### tipos_actas_calificaciones
+
+En esta tabla se definen los diferentes tipos de actas para las calificaciones. El tipo de acta se refiere a los diferentes tipos de calificaciones oficiales que se registran durante un periodo escolar.
+
+**Casos de ejemplo:**
+
+- En un periodo semestral de 6 meses, la escuela debe aplicar 3 exámenes parciales los cuales definen la calificación final de la materia.
+- Mientras que un periodo cuatrimestral de 4 meses solo se aplican 2 exámenes parciales.
+- También puede aplicarse un solo examen parcial final que representa el total de la calificación sin la necesidad de registrar las calificaciones de los parciales.
+- A su vez, también existen actas de exámenes extraordinarios de primer, segundo y tercer intento para los casos de alumnos que reprobaron una materia.
+
+**tipos de actas de calificaciones:**
+
+- Primer parcial (examen aplicativo a los 2 meses)
+- Segundo parcial (examen aplicativo a los 4 meses)
+- Tercer parcial (examen aplicativo a los 6 meses)
+- Parcial final (un solo examen durante todo el periodo escolar)
+- Extraordinario primer intento (primer intento del alumno para aprobar una materia reprobada)
+- Extraordinario segundo intento (segundo intento del alumno para aprobar una materia reprobada)
+- Extraordinario tercer intento (tercer intento del alumno para aprobar una materia reprobada)
+
+| tipo        | atributo | Nulo | descripción                     |
+| :---------- | :------: | :--: | :------------------------------ |
+| int         |    id    |  No  | Clave primaria                  |
+| varchar(30) |  nombre  |  No  | nombre del tipo de calificación |
+
+### actas_calificaciones
+
+En esta tabla se definen los datos de un acta de calificación que hace referencia al tipo de calificaciones que se guardan dentro de ellas.
+
+**Nota:** El campo grupo_escolar_materia_id solo sera nullo en caso de actas extraordinarias. ya que en esos tipos de casos, el alumno puede hacer
+el examen si estar registrado en un periodo escolar activo o en un grupo.
+
+| tipo |         atributo          | Nulo | descripción                                                                |
+| :--- | :-----------------------: | :--: | :------------------------------------------------------------------------- |
+| int  |            id             |  No  | Clave primaria                                                             |
+| int  | tipo_acta_calificacion_id |  No  | Clave foránea que hace referencia la tabla **tipos_actas_calificaciones**  |
+| int  | grupo_escolar_materia_id  |  Si  | Clave foránea que hace referencia la tabla **grupos_escolares_materias**   |
+| bool |          abierto          |  No  | campo que define si el acta esta disponible para captura de calificaciones |
+
+### alumnos_calificaciones
+
+En esta tabla se definen las calificaciones de los alumnos.
+
+| tipo        |       atributo       | Nulo | descripción                                                         |
+| :---------- | :------------------: | :--: | :------------------------------------------------------------------ |
+| int         |          id          |  No  | Clave primaria                                                      |
+| int         | acta_calificacion_id |  No  | Clave foránea que hace referencia la tabla **actas_calificaciones** |
+| int         |  alumno_materia_id   |  No  | Clave foránea que hace referencia la tabla **alumnos_materias**     |
+| varchar(10) |     calificacion     |  No  | calificación optenida del alumno de una materia                     |
