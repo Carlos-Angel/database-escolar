@@ -268,8 +268,8 @@ En esta tabla se definen los diferentes tipos de actas para las calificaciones. 
 
 En esta tabla se definen los datos de un acta de calificación que hace referencia al tipo de calificaciones que se guardan dentro de ellas.
 
-**Nota:** El campo grupo_escolar_materia_id solo sera nullo en caso de actas extraordinarias. ya que en esos tipos de casos, el alumno puede hacer
-el examen si estar registrado en un periodo escolar activo o en un grupo.
+**Nota:** El campo grupo_escolar_materia_id solo sera nullo en caso de actas extraordinarias. ya que en esos casos, el alumno puede hacer
+el examen sin estar registrado en un periodo escolar activo o en un grupo.
 
 | tipo |         atributo          | Nulo | descripción                                                                |
 | :--- | :-----------------------: | :--: | :------------------------------------------------------------------------- |
