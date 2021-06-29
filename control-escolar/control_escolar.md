@@ -24,6 +24,9 @@ En este archivo se describen las tablas y sus átributos definidos en el esquema
   - [tipos_actas_calificaciones](#tipos_actas_calificaciones)
   - [actas_calificaciones](#actas_calificaciones)
   - [alumnos_calificaciones](#alumnos_calificaciones)
+  - [edificios](#edificios)
+  - [aulas](#aulas)
+  - [horarios_grupos_escolares](#horarios_grupos_escolares)
 
 ## Atributos obligatorios
 
@@ -288,3 +291,49 @@ En esta tabla se definen las calificaciones de los alumnos.
 | int         | acta_calificacion_id |  No  | Clave foránea que hace referencia la tabla **actas_calificaciones** |
 | int         |  alumno_materia_id   |  No  | Clave foránea que hace referencia la tabla **alumnos_materias**     |
 | varchar(10) |     calificacion     |  No  | calificación optenida del alumno de una materia                     |
+
+### edificios
+
+En esta tabla se definen los edificios disponibles para las clases
+
+ejemplo de clave:
+nombre: Edificio de medicina
+clave: M
+
+| tipo    | atributo | Nulo | descripción                      |
+| :------ | :------: | :--: | :------------------------------- |
+| int     |    id    |  No  | Clave primaria                   |
+| char(1) |  clave   |  No  | Clave de abecedario del edificio |
+| var(30) |  nombre  |  No  | nombre del edificio              |
+
+### aulas
+
+En esta tabla se definen las aulas de clases
+
+**Nota:** La clave del aula se compone de los siguientes elementos, (clave del edificio, nivel de piso - numero de aula del edificio)
+Aula que se encuentra en el edificio M, nivel 2, aula 08,
+ejemplo: M-2-08
+
+| tipo         |  atributo   | Nulo | descripción                                                                          |
+| :----------- | :---------: | :--: | :----------------------------------------------------------------------------------- |
+| int          |     id      |  No  | Clave primaria                                                                       |
+| int          | edificio_id |  No  | Clave foránea que hace referencia la tabla **edificios**                             |
+| char(6)      |    clave    |  No  | clave oficial de registro del aula que se imprimirá en los horarios grupos escolares |
+| varchar(15)  |   nombre    |  No  | nombre del aula                                                                      |
+| varchar(200) | descripcion |  No  | descripción detallada del uso del aula                                               |
+
+### horarios_grupos_escolares
+
+En esta tabla se definen los horarios de grupos
+
+**Tipo enum dias**
+enum('LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO','DOMINGO')
+
+| tipo |         atributo         | Nulo | descripción                                                              |
+| :--- | :----------------------: | :--: | :----------------------------------------------------------------------- |
+| int  |            id            |  No  | Clave primaria                                                           |
+| int  |         aula_id          |  No  | Clave foránea que hace referencia la tabla **aulas**                     |
+| int  | grupo_escolar_materia_id |  No  | Clave foránea que hace referencia la tabla **grupos_escolares_materias** |
+| enum |           dia            |  No  | dia del horario de clase                                                 |
+| time |       hora_entrada       |  No  | horario de entrada a clases                                              |
+| time |       hora_salida        |  No  | horario de salida de las clases                                          |
