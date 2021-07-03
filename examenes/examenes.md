@@ -5,11 +5,13 @@ En este archivo se describen las tablas y sus átributos definidos en el esquema
 - [Esquema: exámenes](#esquema-exámenes)
   - [Atributos obligatorios](#atributos-obligatorios)
 - [Tablas](#tablas)
-    - [tipos_preguntas](#tipos_preguntas)
-    - [preguntas](#preguntas)
-    - [respuestas](#respuestas)
-    - [examenes](#examenes)
-    - [examenes_preguntas](#examenes_preguntas)
+  - [tipos_preguntas](#tipos_preguntas)
+  - [preguntas](#preguntas)
+  - [respuestas](#respuestas)
+  - [examenes](#examenes)
+  - [examenes_preguntas](#examenes_preguntas)
+  - [programaciones_examenes](#programaciones_examenes)
+  - [tiempos_extras](#tiempos_extras)
 
 ## Atributos obligatorios
 
@@ -83,3 +85,28 @@ En esta tabla se definen los respuestas asociadas a una pregunta.
 | int  |  examen_id  |  No  | Clave foránea que hace referencia a la tabla **examenes**  |
 | int  | pregunta_id |  No  | Clave foránea que hace referencia a la tabla **preguntas** |
 | bool |  cancelada  |  Si  | cancelar una pregunta del examen                           |
+
+### programaciones_examenes
+
+En esta tabla se definen las fechas de programación para aplicar un examen a los alumnos.
+Los campos grupo escolar_id y alumno_id puedes ser nulos en los casos de que la programación sea para un grupo o para un solo alumno.
+
+| tipo |      atributo      | Nulo | descripción                                                                                   |
+| :--- | :----------------: | :--: | :-------------------------------------------------------------------------------------------- |
+| int  |         id         |  No  | Clave primaria                                                                                |
+| int  |     examen_id      |  No  | Clave foránea que hace referencia a la tabla **examenes**                                     |
+| int  |  grupo_escolar_id  |  Si  | Clave foránea que hace referencia a la tabla **grupos_escolares** del esquema control_escolar |
+| int  |     alumno_id      |  Si  | Clave foránea que hace referencia a la tabla **alumnos** del esquema control_escolar          |
+| date | fecha_programacion |  No  | fecha en que se aplicara el examen                                                            |
+| time |    hora_inicio     |  No  | hora de inicio del examen                                                                     |
+| time |     hora_final     |  No  | hora final del examen                                                                         |
+
+### tiempos_extras
+
+En esta tabla se definen los tiempos extras (solo en caso de ser necesario) para aumentar el tiempo de programación de un examen.
+
+| tipo |        atributo        | Nulo | descripción                                                              |
+| :--- | :--------------------: | :--: | :----------------------------------------------------------------------- |
+| int  |           id           |  No  | Clave primaria                                                           |
+| int  | programacion_examen_id |  No  | Clave foránea que hace referencia a la tabla **programaciones_examenes** |
+| time |      tiempo_extra      |  Si  | tiempo extra de una programación                                         |
