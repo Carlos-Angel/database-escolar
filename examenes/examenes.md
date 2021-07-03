@@ -12,6 +12,8 @@ En este archivo se describen las tablas y sus átributos definidos en el esquema
   - [examenes_preguntas](#examenes_preguntas)
   - [programaciones_examenes](#programaciones_examenes)
   - [tiempos_extras](#tiempos_extras)
+  - [examenes_alumnos](#examenes_alumnos)
+  - [preguntas_examenes_alumnos](#preguntas_examenes_alumnos)
 
 ## Atributos obligatorios
 
@@ -110,3 +112,32 @@ En esta tabla se definen los tiempos extras (solo en caso de ser necesario) para
 | int  |           id           |  No  | Clave primaria                                                           |
 | int  | programacion_examen_id |  No  | Clave foránea que hace referencia a la tabla **programaciones_examenes** |
 | time |      tiempo_extra      |  Si  | tiempo extra de una programación                                         |
+
+### examenes_alumnos
+
+En esta tabla se definen los datos de los examens de los alumnos.
+El atributo **estado** es de tipo enum('GENERADO','CONTESTANDO','CALIFICADO','CANCELADO')
+Estados:
+GENERADO: Siempre se debe generar el examen al momento de programar una fecha.
+CONTESTANDO: Estado cuando el alumno esta resolviendo el examen.
+CALIFICADO: Estado cuando el alumno envió el examen a calificar para entregar su calificación.
+CANCELADO: Estado cuando el alumno incumple los lineamientos en el proceso de realizar el examen.
+
+| tipo         | atributo  | Nulo | descripción                                                                          |
+| :----------- | :-------: | :--: | :----------------------------------------------------------------------------------- |
+| int          |    id     |  No  | Clave primaria                                                                       |
+| int          | examen_id |  No  | Clave foránea que hace referencia a la tabla **examenes**                            |
+| int          | alumno_id |  No  | Clave foránea que hace referencia a la tabla **alumnos** del esquema control_escolar |
+| varchar(150) |   email   |  No  | email el cual se enviaran los resultados del examen del alumno                       |
+| enum         |  estado   |  No  | estados o etapas del proceso del examen del alumno                                   |
+
+### preguntas_examenes_alumnos
+
+En esta tabla se definen las preguntas del examen del alumno.
+
+| tipo |      atributo      | Nulo | descripción                                                         |
+| :--- | :----------------: | :--: | :------------------------------------------------------------------ |
+| int  |         id         |  No  | Clave primaria                                                      |
+| int  |  examen_alumno_id  |  No  | Clave foránea que hace referencia a la tabla **examenes_alumnos**   |
+| int  | examen_pregunta_id |  Si  | Clave foránea que hace referencia a la tabla **examenes_preguntas** |
+| bool |     cancelada      |  Si  | campo que indica si la pregunta esta cancelada                      |
