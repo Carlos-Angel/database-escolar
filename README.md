@@ -12,3 +12,17 @@ En este repositorio encontraras la documentación de una base de datos para la a
 - cursos.drawio (Diagrama ER de la base de datos del esquema encargado de la administración de cursos, talleres escolares).
 - finanzas.drawio (Diagrama ER de la base de datos del esquema encargado de la administración de finanzas).
 - examenes.drawio (Diagrama ER de la base de datos del esquema encargado de la administración de exámenes escolares).
+
+## diagramas
+
+### esquema control escolar
+
+![](/control-escolar/control_escolar.png)
+
+### esquema cursos
+
+![](/cursos/cursos.png)
+
+### esquema exámenes
+
+![](/examenes/examenes.png)
