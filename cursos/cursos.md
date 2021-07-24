@@ -41,7 +41,7 @@ En esta tabla se definen los datos de un curso.
 | :----------- | :-----------------------------: | :--: | :------------------------------------------------------------------ |
 | int          |               id                |  No  | Clave primaria                                                      |
 | int          |          tipo_curso_id          |  No  | Clave foránea que hace referencia a la misma tabla **tipos_cursos** |
-| text         |              clave              |  No  | clave oficial del curso que sera impreso en documentos              |
+| char(10)     |              clave              |  No  | clave oficial del curso que sera impreso en documentos              |
 | varchar(150) |             nombre              |  Si  | nombre del curso                                                    |
 | int          | calificacion_minima_aprobatoria |  Si  | calificación minima para aprobar el curso                           |
 | int          |          numero_horas           |  Si  | numero de horas para completar el curso                             |
