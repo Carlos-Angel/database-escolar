@@ -2,6 +2,8 @@
 
 En este archivo se describen las tablas y sus átributos definidos en el esquema de exámenes.
 
+![](./examenes.svg)
+
 - [Esquema: exámenes](#esquema-exámenes)
   - [Atributos obligatorios](#atributos-obligatorios)
 - [Tablas](#tablas)
