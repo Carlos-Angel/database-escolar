@@ -2,15 +2,17 @@
 
 En este archivo se describen las tablas y sus átributos definidos en el esquema de cursos.
 
+![](./cursos.svg)
+
 - [Esquema: cursos](#esquema-cursos)
   - [Atributos obligatorios](#atributos-obligatorios)
 - [Tablas](#tablas)
-    - [tipos_cursos](#tipos_cursos)
-    - [cursos](#cursos)
-    - [cursos_escuelas](#cursos_escuelas)
-    - [talleres](#talleres)
-    - [alumnos_inscritos_talleres](#alumnos_inscritos_talleres)
-    - [talleres_horarios](#talleres_horarios)
+  - [tipos_cursos](#tipos_cursos)
+  - [cursos](#cursos)
+  - [cursos_escuelas](#cursos_escuelas)
+  - [talleres](#talleres)
+  - [alumnos_inscritos_talleres](#alumnos_inscritos_talleres)
+  - [talleres_horarios](#talleres_horarios)
 
 ## Atributos obligatorios
 
