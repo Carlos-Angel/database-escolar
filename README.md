@@ -18,7 +18,7 @@ En este repositorio encontraras la documentación de una base de datos para la a
 - [control escolar](control-escolar/README.md)
 - [cursos](cursos/README.md)
 - [exámenes](examenes/README.md)
-- [finanzas](finanzas/finanzas.md)
+- [finanzas](finanzas/README.md)
 
 ## Diagramas
 
