@@ -2,6 +2,8 @@
 
 En este archivo se describen las tablas y sus átributos definidos en el esquema de control escolar.
 
+![](./control_escolar.svg)
+
 - [Esquema: control escolar](#esquema-control-escolar)
   - [Atributos obligatorios](#atributos-obligatorios)
 - [Tablas](#tablas)
